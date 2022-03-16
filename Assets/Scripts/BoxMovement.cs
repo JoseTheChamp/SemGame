@@ -6,26 +6,33 @@ public class BoxMovement : MonoBehaviour
 {
     private float swingSpeed;
     private float maxSwingSpeed;
-    private bool isThrown = false;
+    [SerializeField] float range = 3.6f;
+    [HideInInspector]public bool isThrown = false;
 
-    public bool isInRange = false;
-
-    private Collider2D playerCollider;
-    private Collider2D myCollider;
+    [HideInInspector]public bool isInRange = false;
+    
+    private Rigidbody2D rb;
+    Collider2D playerCollider;
+    Collider2D myCollider;
     void Start()
     {
         SwingManager sm = GameObject.Find("GameManager").GetComponent<SwingManager>();
         swingSpeed = sm.swingSpeed;
         maxSwingSpeed = sm.maxSwingSpeed;
-        playerCollider = GameObject.Find("Player").GetComponent<Collider2D>();
-        myCollider = this.gameObject.GetComponent<Collider2D>();
+        playerCollider = GameObject.Find("Player").GetComponent<CircleCollider2D>();
+        myCollider = this.GetComponentInChildren<BoxCollider2D>();
+        if (!myCollider.isActiveAndEnabled)
+        {
+            myCollider = this.GetComponentInChildren<CircleCollider2D>();
+        }
+
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if(isThrown){
-            Rigidbody2D rb = this.gameObject.GetComponent<Rigidbody2D>();
             Vector2 speed = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             speed = speed - (Vector2)this.gameObject.transform.position;
             speed = speed * swingSpeed * Time.deltaTime;
@@ -36,9 +43,17 @@ public class BoxMovement : MonoBehaviour
         }
         if (!isInRange)
         {
-            isThrown=false;
-            Physics2D.IgnoreCollision(playerCollider,myCollider,false);
+            isThrown = false;
+        }
+    }
 
+    private void Update()
+    {
+        //Debug.Log(Vector2.Distance(playerCollider.transform.position,this.transform.position));
+        if(Vector2.Distance(playerCollider.transform.position,this.transform.position)<range){
+            isInRange = true;
+        }else{
+            isInRange = false;
         }
     }
 
