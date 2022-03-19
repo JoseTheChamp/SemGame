@@ -8,6 +8,7 @@ public class Dock : MonoBehaviour
 [SerializeField] private ColorType color;
 private GameManager gameManager;
 [SerializeField] private Image image;
+private bool isBlocked = false;
 
     void Start()
     {
@@ -26,25 +27,36 @@ private GameManager gameManager;
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Item")
         {
-            if (other.GetComponentInParent<BoxLogic>().color == this.color)
+            if (!isBlocked)
             {
-                Destroy(other.transform.parent.gameObject);
-                gameManager.BoxDelivered();
-                //TakeOut make contact to gameManager
-            }else{
-                Destroy(other.transform.parent.gameObject);
-                gameManager.RestoreBox();
-            } //else take out a poslat zpatky na spawner ???? asi jo ale jednoduse neboli to spawn +1
+                if (other.GetComponentInParent<BoxLogic>().color == this.color)
+                {
+                    Destroy(other.transform.parent.gameObject);
+                    gameManager.BoxDelivered();
+                    //TakeOut make contact to gameManager
+                }else{
+                    //TODO add time to clock
+                    Destroy(other.transform.parent.gameObject);
+                    gameManager.RestoreBox();
+                    gameManager.addTime(5);
+                } //else take out a poslat zpatky na spawner ???? asi jo ale jednoduse neboli to spawn +1   
+            }
+        }
+        if (other.tag == "Enemy")
+        {
+            isBlocked = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            isBlocked = false;
         }
     }
 }

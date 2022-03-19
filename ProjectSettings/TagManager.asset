@@ -8,6 +8,7 @@ TagManager:
   - Dock
   - Spawner
   - Range
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 4222855889
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SpawnerDock
+    uniqueID: 214043481
+    locked: 0
+  - name: ForeGround
+    uniqueID: 207468181
     locked: 0

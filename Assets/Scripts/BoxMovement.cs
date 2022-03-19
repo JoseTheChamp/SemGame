@@ -6,6 +6,8 @@ public class BoxMovement : MonoBehaviour
 {
     private float swingSpeed;
     private float maxSwingSpeed;
+    [HideInInspector] public float speed;
+    private Vector2 oldPosition;
     [SerializeField] float range = 3.6f;
     [HideInInspector]public bool isThrown = false;
 
@@ -27,6 +29,7 @@ public class BoxMovement : MonoBehaviour
         }
 
         rb = this.gameObject.GetComponent<Rigidbody2D>();
+        oldPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -49,7 +52,6 @@ public class BoxMovement : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(Vector2.Distance(playerCollider.transform.position,this.transform.position));
         if(Vector2.Distance(playerCollider.transform.position,this.transform.position)<range){
             isInRange = true;
         }else{

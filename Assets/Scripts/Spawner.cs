@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
-
 public class Spawner : MonoBehaviour
 {
     private int numberToSpawn;
@@ -14,6 +13,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Sprite circle;
     [SerializeField] private Sprite box;
     private bool isSpawning = false;
+
+    System.Random rnd = new System.Random();
 
     private GameObject toSpawn;
     private GameManager gameManager;
@@ -58,14 +59,15 @@ public class Spawner : MonoBehaviour
         rigidbody2D.drag = 0; 
         }
         //Bouncy
-        Random.InitState(System.DateTime.Now.Millisecond);        if (Random.Range(0,3) < 2)
+        Random.InitState(System.DateTime.Now.Millisecond);   
+        if (rnd.Next(0,3) < 2)
         {
             rigidbody2D.sharedMaterial = bouncy;
         }else{
             rigidbody2D.sharedMaterial = unBouncy;
         }
         Random.InitState(System.DateTime.Now.Millisecond);        //Shape
-        if (Random.Range(0,3) < 2)
+        if (rnd.Next(0,3) < 2)
         {
             spriteRenderer.sprite = circle;
             toSpawn.GetComponentInChildren<BoxCollider2D>().enabled = false;
@@ -74,7 +76,7 @@ public class Spawner : MonoBehaviour
             toSpawn.GetComponentInChildren<CircleCollider2D>().enabled = false;
         }
         Random.InitState(System.DateTime.Now.Millisecond);        //Color
-        int i = Random.Range(0,3);
+        int i = rnd.Next(0,3);
         if (i == 0)
         {
             boxLogic.color = ColorType.blue;
