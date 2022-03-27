@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AreaManager : MonoBehaviour
 {
+
+    [SerializeField] float drag = 4.5f;
+
     private class ItemDrag{
         public int instatnceID;
         public float drag;
@@ -28,7 +31,7 @@ public class AreaManager : MonoBehaviour
             {
                 rb.drag = 0;
             }else{
-                rb.drag = 2.5f;
+                rb.drag = drag;
             }
         }
         if (other.gameObject.tag == "Player")
@@ -39,7 +42,7 @@ public class AreaManager : MonoBehaviour
             {
                 rb.drag = 0;
             }else{
-                rb.drag = 2.5f;
+                rb.drag = drag;
             }
         }
     }

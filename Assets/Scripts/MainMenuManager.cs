@@ -29,13 +29,13 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void NewGame(){
-        PlayerPrefs.SetInt("GameLevel",1);
+        PlayerPrefs.SetInt("GameLevel",0);
         PlayerPrefs.SetFloat("GameTime",0f);
         SceneLoader.LoadScene(1);
     }
 
     public void ContinueGame(){
-        SceneLoader.LoadScene(level);
+        SceneLoader.LoadScene(level+1);
     }
 
     public void Quit(){

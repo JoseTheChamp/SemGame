@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("GameLevel",level+1);
         Debug.Log("KONEC HRY CAS: " + timer);
         updateGameTime();
-        if (level < maxLevel)
+        if (level+1 != maxLevel)
         {
             Debug.Log("NEXT");
             nextLevel.SetActive(true);
@@ -98,7 +98,8 @@ public class GameManager : MonoBehaviour
     private void updateHighScore(){
         float highScore = PlayerPrefs.GetFloat("HighScore",0f);
         float gameTime = PlayerPrefs.GetFloat("GameTime",0f);
-        if (gameTime < highScore)
+        Debug.Log("UpdateHighScore: " + gameTime + " < " + highScore + "???");
+        if (gameTime < highScore || highScore == 0)
         {
             Debug.Log("NOVE HIGHSCORE");
             PlayerPrefs.SetFloat("HighScore",gameTime);

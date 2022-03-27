@@ -134,7 +134,6 @@ public class Enemy : MonoBehaviour
         }
         targetDirection = new Vector2(target.x - transform.position.x,target.y - transform.position.y); 
         healthImage.fillAmount = health/maxHealth;
-        Debug.Log(health/maxHealth);
         }
     }
 
@@ -156,6 +155,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log("EnemyCollision");
         if (other.gameObject.tag == "Item")
         {
             if (GameObject.ReferenceEquals(other?.gameObject,nearestBox?.transform.parent.gameObject))

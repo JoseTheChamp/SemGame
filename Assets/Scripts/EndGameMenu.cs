@@ -12,11 +12,12 @@ public class EndGameMenu : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        mText.SetText("LEVEL " + gameManager.level);
+        int level = PlayerPrefs.GetInt("GameLevel",0);
+        mText.SetText("LEVEL " + level);
     }
 
     public void NextLevel(){
-        int level = PlayerPrefs.GetInt("GameLevel",1);
+        int level = PlayerPrefs.GetInt("GameLevel",0);
         SceneLoader.LoadScene(level+1);
         Debug.Log("NEXT LEVEL");
     }

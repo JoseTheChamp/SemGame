@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
         }
         //Bouncy
         Random.InitState(System.DateTime.Now.Millisecond);   
-        if (rnd.Next(0,3) < 2)
+        if (rnd.Next(0,4) < 3) //TODO different graphic if bouncy/unbouncy
         {
             rigidbody2D.sharedMaterial = bouncy;
         }else{
