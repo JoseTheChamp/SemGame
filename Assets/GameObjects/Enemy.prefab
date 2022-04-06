@@ -141,7 +141,7 @@ MonoBehaviour:
   dockInterval: 4
   speed: 6
   healthImage: {fileID: 8869036514794683788}
-  maxHealth: 100
+  maxHealth: 80
 --- !u!1 &8869036514655417650
 GameObject:
   m_ObjectHideFlags: 0

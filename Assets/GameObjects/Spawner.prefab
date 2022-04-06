@@ -99,5 +99,7 @@ MonoBehaviour:
   bouncy: {fileID: 0}
   unBouncy: {fileID: 0}
   isFreeFloating: 0
-  circle: {fileID: 0}
-  box: {fileID: 0}
+  circle: {fileID: 21300000, guid: 4e5ddaa25878e41478ee1752a78e2e0b, type: 3}
+  box: {fileID: 21300000, guid: a0b607c5fd25bb04d95c1092b75dd39e, type: 3}
+  boxRugged: {fileID: 21300000, guid: c6877ff992faacf41b10372fac2b10c7, type: 3}
+  circleRugged: {fileID: 21300000, guid: 4dad775929e5d8540a5d32fec66159c3, type: 3}

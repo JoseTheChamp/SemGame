@@ -6,12 +6,17 @@ public class Spawner : MonoBehaviour
 {
     private int numberToSpawn;
     private float interval;
+    private bool isRugged = false;
     [SerializeField] private GameObject boxPrefab;
     [SerializeField] private PhysicsMaterial2D bouncy;
     [SerializeField] private PhysicsMaterial2D unBouncy;
     [SerializeField] private bool isFreeFloating = false;
     [SerializeField] private Sprite circle;
     [SerializeField] private Sprite box;
+    [SerializeField] private Sprite boxRugged;
+    [SerializeField] private Sprite circleRugged;
+
+
     private bool isSpawning = false;
 
     System.Random rnd = new System.Random();
@@ -63,16 +68,28 @@ public class Spawner : MonoBehaviour
         if (rnd.Next(0,4) < 3) //TODO different graphic if bouncy/unbouncy
         {
             rigidbody2D.sharedMaterial = bouncy;
+            isRugged = false;
         }else{
             rigidbody2D.sharedMaterial = unBouncy;
+            isRugged = true;
         }
         Random.InitState(System.DateTime.Now.Millisecond);        //Shape
         if (rnd.Next(0,3) < 2)
         {
-            spriteRenderer.sprite = circle;
+            if (isRugged)
+            {
+                spriteRenderer.sprite = circleRugged;
+            }else{
+                spriteRenderer.sprite = circle;
+            }
             toSpawn.GetComponentInChildren<BoxCollider2D>().enabled = false;
         }else{
-            spriteRenderer.sprite = box;
+            if (isRugged)
+            {
+                spriteRenderer.sprite = boxRugged;
+            }else{
+                spriteRenderer.sprite = box;
+            }
             toSpawn.GetComponentInChildren<CircleCollider2D>().enabled = false;
         }
         Random.InitState(System.DateTime.Now.Millisecond);        //Color

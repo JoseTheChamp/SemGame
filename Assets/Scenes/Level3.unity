@@ -319,7 +319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6657318116956322617, guid: b3f8f5eb62b20d143ae1a0e9fc6e9f56, type: 3}
       propertyPath: maxHealth
-      value: 140
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 6657318116956322617, guid: b3f8f5eb62b20d143ae1a0e9fc6e9f56, type: 3}
       propertyPath: dockInterval
