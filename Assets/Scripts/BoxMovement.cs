@@ -2,25 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxMovement : MonoBehaviour
+public class BoxMovement : MonoBehaviour //řeší pohyb boxu, kdy se hráč smí dotknout, kdy se spojení přeruší atd.
 {
     private float swingSpeed;
-    private float maxSwingSpeed;
-    [HideInInspector] public float speed;
     private Vector2 oldPosition;
-    [SerializeField] float range = 3.6f;
-    [HideInInspector]public bool isThrown = false;
-
-    [HideInInspector]public bool isInRange = false;
-    
+    [SerializeField] private float range = 3.6f;
+    [HideInInspector]private bool isThrown = false;
+    [HideInInspector]private bool isInRange = false;
     private Rigidbody2D rb;
-    Collider2D playerCollider;
-    Collider2D myCollider;
+    private Collider2D playerCollider;
+    private Collider2D myCollider;
     void Start()
     {
         SwingManager sm = GameObject.Find("GameManager").GetComponent<SwingManager>();
-        swingSpeed = sm.swingSpeed;
-        maxSwingSpeed = sm.maxSwingSpeed;
+        swingSpeed = sm.SwingSpeed;
         playerCollider = GameObject.Find("Player").GetComponent<CircleCollider2D>();
         myCollider = this.GetComponentInChildren<BoxCollider2D>();
         if (!myCollider.isActiveAndEnabled)
@@ -32,16 +27,12 @@ public class BoxMovement : MonoBehaviour
         oldPosition = this.transform.position;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if(isThrown){
+        if(isThrown){ //pokud právě házím - vypočítá a přidá se síla
             Vector2 speed = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             speed = speed - (Vector2)this.gameObject.transform.position;
             speed = speed * swingSpeed * Time.deltaTime;
-            if(speed.x > maxSwingSpeed || speed.y > maxSwingSpeed){
-                Debug.Log("MAXING OUT - " + speed + "   max: " + maxSwingSpeed);
-            }
             rb.AddForce(speed);
         }
         if (!isInRange)
@@ -52,7 +43,7 @@ public class BoxMovement : MonoBehaviour
 
     private void Update()
     {
-        if(Vector2.Distance(playerCollider.transform.position,this.transform.position)<range){
+        if(Vector2.Distance(playerCollider.transform.position,this.transform.position)<range){ // kontrola jestli je hráč v dosahu
             isInRange = true;
         }else{
             isInRange = false;
@@ -63,15 +54,15 @@ public class BoxMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (isInRange)
+            if (isInRange) //zahájení házení
             {
-            isThrown = true;
-            Physics2D.IgnoreCollision(playerCollider,myCollider); 
+                isThrown = true;
+                Physics2D.IgnoreCollision(playerCollider,myCollider); 
             }
         }
     }
 
-    private void OnMouseUp()
+    private void OnMouseUp() //zkončení hodu hráčem
     {
         isThrown = false;
         Physics2D.IgnoreCollision(playerCollider,myCollider,false);

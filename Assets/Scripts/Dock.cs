@@ -33,17 +33,15 @@ private bool isBlocked = false;
         {
             if (!isBlocked)
             {
-                if (other.GetComponentInParent<BoxLogic>().color == this.color)
+                if (other.GetComponentInParent<BoxLogic>().Color == this.color)
                 {
                     Destroy(other.transform.parent.gameObject);
                     gameManager.BoxDelivered();
-                    //TakeOut make contact to gameManager
                 }else{
-                    //TODO add time to clock
                     Destroy(other.transform.parent.gameObject);
                     gameManager.RestoreBox();
                     gameManager.addTime(5);
-                } //else take out a poslat zpatky na spawner ???? asi jo ale jednoduse neboli to spawn +1   
+                } 
             }
         }
         if (other.tag == "Enemy")

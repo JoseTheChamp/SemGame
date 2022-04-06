@@ -5,9 +5,9 @@ using UnityEngine;
 public class MovingBarrier : MonoBehaviour
 {
     private Vector2 startPossition;
-    [SerializeField] bool axisIsX;
-    [SerializeField] bool upOrLeft;
-    [SerializeField] float lenght = 3f;
+    [SerializeField] private bool axisIsX;
+    [SerializeField] private bool upOrLeft;
+    [SerializeField] private float lenght = 3f;
     private int i;
     void Start()
     {
@@ -22,9 +22,9 @@ public class MovingBarrier : MonoBehaviour
     {
         if (axisIsX)
         {
-        transform.position = startPossition + new Vector2((Mathf.Sin(Time.time) + 1) * i * lenght, 0.0f);
+            transform.position = startPossition + new Vector2((Mathf.Sin(Time.time) + 1) * i * lenght, 0.0f);
         }else{
-        transform.position = startPossition + new Vector2(0.0f,(Mathf.Sin(Time.time) + 1) *i* lenght);
+            transform.position = startPossition + new Vector2(0.0f,(Mathf.Sin(Time.time) + 1) *i* lenght);
         }
     }
 }

@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class MainMenuManager : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI GameLevelText;
-    [SerializeField] TextMeshProUGUI GameTimeText;
-    [SerializeField] TextMeshProUGUI HighScoreText;
+    [SerializeField] private TextMeshProUGUI GameLevelText;
+    [SerializeField] private TextMeshProUGUI GameTimeText;
+    [SerializeField] private TextMeshProUGUI HighScoreText;
 
     private int level;
 

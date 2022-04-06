@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float spawnInterval = 4f;
     [SerializeField] private float dockInterval = 8f;
     [SerializeField] private float speed = 6.5f;
-    public Image healthImage; 
+    [SerializeField] private Image healthImage; 
     private Transform playerTransform;
     private Vector2 startingPosition;
     private Transform nearestDock;
@@ -23,8 +23,8 @@ public class Enemy : MonoBehaviour
     private bool revive = false;
     private Rigidbody2D rb;
     private int state = 0;
-    private bool even = true;
-    System.Random rnd = new System.Random();
+    private bool evenState = true;
+    private System.Random rnd = new System.Random();
     private CircleCollider2D myColider;
     private SpriteRenderer mySpriteRenderer;
     private GameManager gameManager;
@@ -44,12 +44,11 @@ public class Enemy : MonoBehaviour
         StartCoroutine("ChangeBehaviour");
     }
 
-    IEnumerator ChangeBehaviour()
+    IEnumerator ChangeBehaviour() // tato metoda se zavolá po startInterval a pote vždy po proměnlivé položce
     {
         yield return new WaitForSeconds(startInterval); 
-        while (true)
+        while (true) // hlavní cyklus chování NPC
         {
-            Debug.Log("CHANGE BEHAVIUOR");
             if (revive)
             {
                 revive = false;
@@ -58,7 +57,7 @@ public class Enemy : MonoBehaviour
                 myColider.enabled = true;
                 mySpriteRenderer.enabled = true;
                 respawning = false;
-                even = true;
+                evenState = true;
                 health = maxHealth;
             }
             plusInterval = 0;
@@ -66,16 +65,15 @@ public class Enemy : MonoBehaviour
                 revive = true;
                 plusInterval += spawnInterval;
             }else{
-                if (even)
+                if (evenState)
                 {
-                    even  = false;
-                    state = 1;
-                    Debug.Log("Heading to PLAYER");
+                    evenState = false;
+                    state = 1; // pohyb směrem k hráči - zranit hráče - přidat mu čas
                 }else{
-                    even = true;
+                    evenState = true;
                     state = rnd.Next(2,4);
                     if (state == 2)
-                    {//k doku
+                    {//pohyb směrem k doku - blokovat dock
                         GameObject[] docks = GameObject.FindGameObjectsWithTag("Dock");
                         if (docks != null)
                         {
@@ -93,7 +91,7 @@ public class Enemy : MonoBehaviour
                             plusInterval += dockInterval;
                         }
 
-                    }else{//k boxu
+                    }else{//pohyb směrem k boxu - zničit box
                         GameObject[] boxes = GameObject.FindGameObjectsWithTag("Item");
                         if (boxes != null)
                         {
@@ -116,28 +114,28 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void Update() //určení cíle a vypočtení směru
     {
         if (!respawning)
         {
-        switch (state)
-        {
-            case 1: // head toward player
-            target = playerTransform.position;
-            break;
-            case 2: // head towards dock
-            target = nearestDock.position;
-            break;
-            case 3: // head towards box
-            target = nearestBox.position;
-            break;
-        }
-        targetDirection = new Vector2(target.x - transform.position.x,target.y - transform.position.y); 
-        healthImage.fillAmount = health/maxHealth;
+            switch (state)
+            {
+                case 1: // head toward player
+                target = playerTransform.position;
+                break;
+                case 2: // head towards dock
+                target = nearestDock.position;
+                break;
+                case 3: // head towards box
+                target = nearestBox.position;
+                break;
+            }
+            targetDirection = new Vector2(target.x - transform.position.x,target.y - transform.position.y); 
+            healthImage.fillAmount = health/maxHealth;
         }
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() //přidání síli směrem k hráči
     {
         if (!respawning)
         {
@@ -146,7 +144,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    private void Respawn(){ // disable and wait one change behaviour
+    private void Respawn(){ // Enemy byl zničen/se zničil
         respawning = true;
         myColider.enabled = false;
         mySpriteRenderer.enabled = false;
@@ -155,8 +153,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("EnemyCollision");
-        if (other.gameObject.tag == "Item")
+        if (other.gameObject.tag == "Item") // pokud na razil na box - znič se, znič box
         {
             if (GameObject.ReferenceEquals(other?.gameObject,nearestBox?.transform.parent.gameObject))
             {
@@ -176,7 +173,7 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player") //pokud narazil na hráče - znič se a přidej čas.
         {
             gameManager.addTime(10);
             Respawn();

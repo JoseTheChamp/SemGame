@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EndGameMenu : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI mText;
+    [SerializeField] private TextMeshProUGUI mText;
     private GameManager gameManager;
 
     void Start()

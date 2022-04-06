@@ -8,14 +8,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 400f;
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = this.gameObject.GetComponent<Rigidbody2D>();
         moveSpeed *= rb.mass;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         float x = Input.GetAxisRaw("Horizontal");

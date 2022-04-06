@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class SwingManager : MonoBehaviour
 {
-    public float swingSpeed = 200f;
-    public float maxSwingSpeed = 400f;
+    public float SwingSpeed {get; set; } = 200f;
 }

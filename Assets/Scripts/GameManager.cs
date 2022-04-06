@@ -5,34 +5,29 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public int numberOfBoxes = 10;
-    [SerializeField] TextMeshProUGUI textTime;
+    public int NumberOfBoxes {get; set;} = 10;
+    [SerializeField] private TextMeshProUGUI textTime;
     private int numberOfBoxesToDeliver;
     private Spawner spawner;
-    [HideInInspector]public int level = 0;
+    [HideInInspector] private int level = 0;
     private int maxLevel = 5;
-    public float interval = 1f;
+    public float Interval {get; set;} = 1f;
     private static float timer;
     private bool gameRunning = true;
-
-    public int Level { get; set; }
 
     [SerializeField] private GameObject nextLevel;
     [SerializeField] private GameObject lastLevel;
 
     void Start()
     {
-        //-----------------
-        Debug.Log("Hotove levely: " + PlayerPrefs.GetInt("GameLevel",0));
-        //----------------
         level = PlayerPrefs.GetInt("GameLevel",0);
-        numberOfBoxesToDeliver = numberOfBoxes;
+        numberOfBoxesToDeliver = NumberOfBoxes;
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
-        numberOfBoxesToDeliver = numberOfBoxes;
+        numberOfBoxesToDeliver = NumberOfBoxes;
         timer = 0;
     }
 
-    private void Update()
+    private void Update() //běh časomíry
     {
         if (gameRunning)
         {
@@ -41,7 +36,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void FormatToTime(){
+    private void FormatToTime(){ //formátování milisekund do zobrazovaného textu
         int intTime = (int)timer;
         int minutes = intTime / 60;
         int seconds = intTime % 60;
@@ -51,7 +46,7 @@ public class GameManager : MonoBehaviour
         textTime.text = timeText;
     }
 
-    private void endgame(){
+    private void endgame(){ //ukončování hry - vyppnutí hráče,posunutí levelu
         GameObject go = GameObject.Find("Enemy");
         if (go != null)
         {
@@ -63,39 +58,35 @@ public class GameManager : MonoBehaviour
         updateGameTime();
         if (level+1 != maxLevel)
         {
-            Debug.Log("NEXT");
             nextLevel.SetActive(true);
         }else{
-            Debug.Log("LAST");
             updateHighScore();
             lastLevel.SetActive(true);
         }
     }
 
-    public void BoxDelivered(){
+    public void BoxDelivered(){ //box dosáhl svého cíle.
         numberOfBoxesToDeliver--;
-        Debug.Log("BOX delivered");
         if (numberOfBoxesToDeliver == 0)
         {
-            Debug.Log("ending game");
             endgame();
         }
     }
-    public void RestoreBox(){
+    public void RestoreBox(){ //box nedosáhl cíle takže je potřeba spwanout jeden box navíc
         spawner.OneMoreBox();
     }
 
-    public void addTime(float time){
+    public void addTime(float time){ //přidání trestného času
         timer += time;
     }
 
-    private void updateGameTime(){
+    private void updateGameTime(){ //update zobrazovaného času
         float gameTime = PlayerPrefs.GetFloat("GameTime",0);
         gameTime += Mathf.Round(timer*100);
         PlayerPrefs.SetFloat("GameTime",gameTime);
     }
 
-    private void updateHighScore(){
+    private void updateHighScore(){ // update highscore na konci hry - porovnání s pamětí
         float highScore = PlayerPrefs.GetFloat("HighScore",0f);
         float gameTime = PlayerPrefs.GetFloat("GameTime",0f);
         Debug.Log("UpdateHighScore: " + gameTime + " < " + highScore + "???");

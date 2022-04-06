@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaManager : MonoBehaviour
+public class AreaManager : MonoBehaviour //Spravuje boxům a hráči drag v oblasti tohoto objektu
 {
 
-    [SerializeField] float drag = 4.5f;
+    [SerializeField] private float Drag { get; set; } = 4.5f;
 
-    private class ItemDrag{
+    private class ItemDrag{ // zachovavá informace o hodnotě drag u objektu
         public int instatnceID;
         public float drag;
 
@@ -21,7 +21,7 @@ public class AreaManager : MonoBehaviour
 
     List<ItemDrag> list = new List<ItemDrag>();
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // zmení drag a zapíše hodnotu do itemDrag
     {
         if (other.gameObject.tag == "Item")
         {
@@ -31,7 +31,7 @@ public class AreaManager : MonoBehaviour
             {
                 rb.drag = 0;
             }else{
-                rb.drag = drag;
+                rb.drag = Drag;
             }
         }
         if (other.gameObject.tag == "Player")
@@ -42,12 +42,12 @@ public class AreaManager : MonoBehaviour
             {
                 rb.drag = 0;
             }else{
-                rb.drag = drag;
+                rb.drag = Drag;
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other) // vrati hodnotu zpět z itemDrag
     {
         if (other.gameObject.tag == "Item")
         {
@@ -60,6 +60,7 @@ public class AreaManager : MonoBehaviour
             ItemDrag itemDrag = list.Find(x => x.instatnceID == other.gameObject.GetInstanceID());
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             rb.drag = itemDrag.drag;
+            list.Remove(itemDrag);
         }
     }
 }
