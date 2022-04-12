@@ -16,6 +16,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Sprite boxRugged;
     [SerializeField] private Sprite circleRugged;
 
+    [SerializeField] private AudioSource spawnAudio;
+
 
     private bool isSpawning = false;
     System.Random rnd = new System.Random();
@@ -24,7 +26,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        numberToSpawn = gameManager.NumberOfBoxes;
+        numberToSpawn = gameManager.numberOfBoxes;
         interval = gameManager.Interval;
         StartCoroutine(Tick());
     }
@@ -111,6 +113,7 @@ public class Spawner : MonoBehaviour
 
 
         toSpawn.SetActive(true); //spawnutí
+        spawnAudio.Play();
         rigidbody2D.AddForce(new Vector2(Random.Range(-50f,50f),Random.Range(-50f,50f))); //přidání síly aby boxy se spawnovali správně
     }
 }

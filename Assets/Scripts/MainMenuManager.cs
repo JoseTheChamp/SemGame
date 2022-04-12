@@ -16,7 +16,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         level = PlayerPrefs.GetInt("GameLevel",0);
-        if (level == 0 || level == 5)
+        if (level == 0 || level > 4)
         {
             GameLevelText.text = "None";
             GameTimeText.text = "00:00,00";
@@ -26,6 +26,10 @@ public class MainMenuManager : MonoBehaviour
             GameTimeText.text = formatTime(PlayerPrefs.GetFloat("GameTime",0f));
         }
         HighScoreText.text = formatTime(PlayerPrefs.GetFloat("HighScore",0f));
+        if(level > 4){
+            PlayerPrefs.SetInt("GameLevel", 0);
+            PlayerPrefs.SetFloat("GameTime", 0);
+        }
     }
 
     public void NewGame(){

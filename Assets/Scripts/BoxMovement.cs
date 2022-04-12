@@ -12,6 +12,7 @@ public class BoxMovement : MonoBehaviour //řeší pohyb boxu, kdy se hráč sm�
     private Rigidbody2D rb;
     private Collider2D playerCollider;
     private Collider2D myCollider;
+    [SerializeField] private AudioSource bounceAudio;
     void Start()
     {
         SwingManager sm = GameObject.Find("GameManager").GetComponent<SwingManager>();
@@ -66,5 +67,9 @@ public class BoxMovement : MonoBehaviour //řeší pohyb boxu, kdy se hráč sm�
     {
         isThrown = false;
         Physics2D.IgnoreCollision(playerCollider,myCollider,false);
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        bounceAudio.Play();
     }
 }

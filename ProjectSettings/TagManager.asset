@@ -9,6 +9,7 @@ TagManager:
   - Spawner
   - Range
   - Enemy
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,9 @@ private GameManager gameManager;
 [SerializeField] private Image image;
 private bool isBlocked = false;
 
+[SerializeField] AudioSource DeliverAudioFailed;
+[SerializeField] AudioSource DeliverAudioSucces;
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -35,9 +38,11 @@ private bool isBlocked = false;
             {
                 if (other.GetComponentInParent<BoxLogic>().Color == this.color)
                 {
+                    DeliverAudioSucces.Play();
                     Destroy(other.transform.parent.gameObject);
                     gameManager.BoxDelivered();
                 }else{
+                    DeliverAudioFailed.Play();
                     Destroy(other.transform.parent.gameObject);
                     gameManager.RestoreBox();
                     gameManager.addTime(5);

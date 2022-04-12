@@ -31,6 +31,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float maxHealth = 100f;
     private float health;
 
+    [SerializeField] AudioSource playerHit;
+
 
     void Start()
     {
@@ -153,8 +155,10 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log("ENEMY COLLISION");
         if (other.gameObject.tag == "Item") // pokud na razil na box - znič se, znič box
         {
+            Debug.Log("ENEMY COLLISION - item");
             if (GameObject.ReferenceEquals(other?.gameObject,nearestBox?.transform.parent.gameObject))
             {
                 Destroy(other.gameObject);
@@ -175,6 +179,8 @@ public class Enemy : MonoBehaviour
         }
         if (other.gameObject.tag == "Player") //pokud narazil na hráče - znič se a přidej čas.
         {
+            Debug.Log("ENEMY COLLISION - player");
+            playerHit.Play();
             gameManager.addTime(10);
             Respawn();
         }

@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public int NumberOfBoxes {get; set;} = 10;
+    public int numberOfBoxes = 6;
     [SerializeField] private TextMeshProUGUI textTime;
     private int numberOfBoxesToDeliver;
     private Spawner spawner;
@@ -21,9 +21,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         level = PlayerPrefs.GetInt("GameLevel",0);
-        numberOfBoxesToDeliver = NumberOfBoxes;
+        numberOfBoxesToDeliver = numberOfBoxes;
         spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
-        numberOfBoxesToDeliver = NumberOfBoxes;
+        numberOfBoxesToDeliver = numberOfBoxes;
         timer = 0;
     }
 

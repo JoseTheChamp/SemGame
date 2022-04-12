@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6657318116956322617, guid: b3f8f5eb62b20d143ae1a0e9fc6e9f56, type: 3}
+      propertyPath: playerHit
+      value: 
+      objectReference: {fileID: 2061793059}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3f8f5eb62b20d143ae1a0e9fc6e9f56, type: 3}
 --- !u!1001 &71752059
@@ -837,6 +841,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a1dedb126dd2747a02368f27b29fb5, type: 3}
+--- !u!1001 &898168356
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2395049261651545255, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_Name
+      value: Soundtrack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3587958273471893150, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 05bb5bfb5355b4446bb0679e3db700fb, type: 3}
 --- !u!1 &1200900921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 837407752658316276, guid: 27d77c60097434e459e6c98d687a994d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.387845
+      value: 2.0766046
       objectReference: {fileID: 0}
     - target: {fileID: 837407752658316276, guid: 27d77c60097434e459e6c98d687a994d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1245,7 +1306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 837407752658316276, guid: 27d77c60097434e459e6c98d687a994d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06
+      value: -0.0051
       objectReference: {fileID: 0}
     - target: {fileID: 837407752658316276, guid: 27d77c60097434e459e6c98d687a994d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1444,3 +1505,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90d07caca97973843be52159e6ed2be8, type: 3}
+--- !u!82 &2061793059 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6326154450731868609, guid: b3f8f5eb62b20d143ae1a0e9fc6e9f56, type: 3}
+  m_PrefabInstance: {fileID: 44425811}
+  m_PrefabAsset: {fileID: 0}
