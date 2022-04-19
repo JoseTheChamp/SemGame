@@ -1081,7 +1081,8 @@ PrefabInstance:
       propertyPath: numberOfBoxes
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 87fe3e41eeb707c41af851b3bf0bd83e, type: 3}
 --- !u!114 &1727172374 stripped
 MonoBehaviour:

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7828969359381607533}
-  - component: {fileID: 7828969359381607532}
   - component: {fileID: 7828969359381607538}
   m_Layer: 0
   m_Name: GameManager
@@ -32,20 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7828969359381607532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7828969359381607535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a72aa6a97154d2408f1f382ebece824, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swingSpeed: 600
-  maxSwingSpeed: 1000
 --- !u!114 &7828969359381607538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,8 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfBoxes: 3
-  text: {fileID: 0}
-  level: 1
-  interval: 1
+  textTime: {fileID: 0}
   nextLevel: {fileID: 0}
   lastLevel: {fileID: 0}

@@ -8,11 +8,13 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float intervalBehaviour = 7f;
     [SerializeField] private float startInterval = 4f;
-    private float plusInterval = 0;
     [SerializeField] private float spawnInterval = 4f;
     [SerializeField] private float dockInterval = 8f;
     [SerializeField] private float speed = 6.5f;
     [SerializeField] private Image healthImage; 
+    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] AudioSource playerHit;
+    private float plusInterval = 0;
     private Transform playerTransform;
     private Vector2 startingPosition;
     private Transform nearestDock;
@@ -28,11 +30,7 @@ public class Enemy : MonoBehaviour
     private CircleCollider2D myColider;
     private SpriteRenderer mySpriteRenderer;
     private GameManager gameManager;
-    [SerializeField] private float maxHealth = 100f;
     private float health;
-
-    [SerializeField] AudioSource playerHit;
-
 
     void Start()
     {

@@ -9,7 +9,7 @@ public class MovingBarrier : MonoBehaviour
     [SerializeField] private bool upOrLeft;
     [SerializeField] private float lenght = 3f;
     private int i;
-    void Start()
+    void Start() //Na základě paramatrů nastaví styl pohybu
     {
         startPossition = this.transform.position;
         i = -1;
@@ -18,7 +18,7 @@ public class MovingBarrier : MonoBehaviour
             i = 1;
         }
     }
-    void Update()
+    void Update() //spravuje pohyb, pohyblivé překážky
     {
         if (axisIsX)
         {

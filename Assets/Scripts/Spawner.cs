@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
-public class Spawner : MonoBehaviour
+public class Spawner : MonoBehaviour //skript pro spawnování boxů
 {
     private int numberToSpawn;
     private float interval;
@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
         interval = gameManager.Interval;
         StartCoroutine(Tick());
     }
-    IEnumerator Tick() // proces spawnování
+    IEnumerator Tick() // proces spawnování - tato metoda se vykonává jednou za interval
     {
         isSpawning = true;
         yield return new WaitForSeconds(interval);

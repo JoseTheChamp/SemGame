@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundTrack : MonoBehaviour
-{
+public class SoundTrack : MonoBehaviour { //zajišťuje nepřerušení muziky mezi scénami.
     private static bool playing = false;
     private void Start()
     {

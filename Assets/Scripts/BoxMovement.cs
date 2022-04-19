@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BoxMovement : MonoBehaviour //řeší pohyb boxu, kdy se hráč smí dotknout, kdy se spojení přeruší atd.
 {
-    private float swingSpeed;
     private Vector2 oldPosition;
     [SerializeField] private float range = 3.6f;
     [HideInInspector]private bool isThrown = false;
@@ -13,10 +12,9 @@ public class BoxMovement : MonoBehaviour //řeší pohyb boxu, kdy se hráč sm�
     private Collider2D playerCollider;
     private Collider2D myCollider;
     [SerializeField] private AudioSource bounceAudio;
+    [SerializeField] private float swingSpeed = 300;
     void Start()
     {
-        SwingManager sm = GameObject.Find("GameManager").GetComponent<SwingManager>();
-        swingSpeed = sm.SwingSpeed;
         playerCollider = GameObject.Find("Player").GetComponent<CircleCollider2D>();
         myCollider = this.GetComponentInChildren<BoxCollider2D>();
         if (!myCollider.isActiveAndEnabled)

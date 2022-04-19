@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class SceneLoader
+public static class SceneLoader //jednoduchý manažer scén
 {
     public static void LoadScene(string sceneName){
         Load(sceneName);

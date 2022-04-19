@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour //správa pohybu hráče.
 {
-
     [SerializeField] private float moveSpeed = 400f;
     private Rigidbody2D rb;
 
