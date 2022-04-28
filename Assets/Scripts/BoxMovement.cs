@@ -6,8 +6,8 @@ public class BoxMovement : MonoBehaviour //řeší pohyb boxu, kdy se hráč sm�
 {
     private Vector2 oldPosition;
     [SerializeField] private float range = 3.6f;
-    [HideInInspector]private bool isThrown = false;
-    [HideInInspector]private bool isInRange = false;
+    private bool isThrown = false;
+    private bool isInRange = false;
     private Rigidbody2D rb;
     private Collider2D playerCollider;
     private Collider2D myCollider;

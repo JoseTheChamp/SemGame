@@ -10,7 +10,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI GameLevelText;
     [SerializeField] private TextMeshProUGUI GameTimeText;
     [SerializeField] private TextMeshProUGUI HighScoreText;
-
     private int level;
 
     void Start()

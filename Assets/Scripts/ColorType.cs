@@ -1,6 +1,6 @@
 public enum ColorType
 {
-red,
-green,
-blue
+    red,
+    green,
+    blue
 }

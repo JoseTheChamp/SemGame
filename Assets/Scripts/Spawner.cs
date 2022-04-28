@@ -15,7 +15,6 @@ public class Spawner : MonoBehaviour //skript pro spawnování boxů
     [SerializeField] private Sprite box;
     [SerializeField] private Sprite boxRugged;
     [SerializeField] private Sprite circleRugged;
-
     [SerializeField] private AudioSource spawnAudio;
 
 

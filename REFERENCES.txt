@@ -1,0 +1,5 @@
+Zvukové efekty /Assets/Audio/ - Mixkit License, by Envato Elements, https://mixkit.co/free-sound-effects/game/
+Soundtrack /Assets/Audio/Tobu_-_Hope_NCS_Release - Tobu - Hope [NCS Release] "Music provided by http://spoti.fi/NCS", https://www.youtube.com/watch?v=EP625xQIGzs&t
+2D sprites /Assets/Sprites/ - vlastní tvorba
+Knihovna TextMesh Pro /Assets/TextMesh Pro/ - Stephan Bouchard - volně dostupná knihovna pro lepší yacháyení s textem, https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/manual/index.html
+Font Roboto /Assets/Fonts/ - google fonts, https://fonts.google.com/

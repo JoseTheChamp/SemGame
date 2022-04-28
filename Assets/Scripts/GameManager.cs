@@ -9,12 +9,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textTime;
     private int numberOfBoxesToDeliver;
     private Spawner spawner;
-    [HideInInspector] private int level = 0;
+    private int level = 0;
     private int maxLevel = 5;
     public float Interval {get; set;} = 1f;
     private static float timer;
     private bool gameRunning = true;
-
     [SerializeField] private GameObject nextLevel;
     [SerializeField] private GameObject lastLevel;
 
